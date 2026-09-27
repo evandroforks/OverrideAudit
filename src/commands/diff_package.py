@@ -1,4 +1,3 @@
-import sublime
 import sublime_plugin
 
 from ..core import ContextHelper
@@ -16,28 +15,33 @@ class OverrideAuditDiffPackageCommand(ContextHelper,sublime_plugin.TextCommand):
     def run(self, edit, **kwargs):
         ctx = self.view_context(None, False, **kwargs)
 
-        self.view.window().run_command("override_audit_diff_report",
-                                       {"package": ctx.package})
+        window = self.view.window()
+        if window is not None:
+            window.run_command("override_audit_diff_report",
+                               {"package": ctx.package})
 
     def description(self, **kwargs):
-        stub = "OverrideAudit: Bulk Diff Package"
+        stub = "Bulk Diff Package"
         ctx = self.view_context(None, False, **kwargs)
         if ctx.package_only():
-            return "%s '%s'" % (stub, ctx.package)
+            return self.caption("%s '%s'" % (stub, ctx.package), **kwargs)
         else:
-            return stub
+            return self.caption(stub, **kwargs)
 
     def is_visible(self, **kwargs):
         if self.always_visible(**kwargs):
             return True
 
-        return self.view_context(None, False, **kwargs).package_only()
+        return self.is_enabled(**kwargs)
 
     def is_enabled(self, **kwargs):
-        ctx = self.view_context(None, False, **kwargs)
+        target = self.view_target(self.view, **kwargs)
+        ctx = self.view_context(target, False, **kwargs)
         report_type = self._report_type(**kwargs)
 
-        return report_type != ctx.package and self.package_exists(ctx)
+        return (report_type != ctx.package and
+                self.package_overrides_possible(target, ctx) and
+                self.package_exists(ctx))
 
 
 ###----------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+Version 3.0.1 (2025-10-29)
+--------------------------
+
+  * Python compatability fix with thanks to @jfcherng
+  * Documentation fixes with thanks to @vwheeler63
+  * Small adjustment to python version reporting in hover popups
+
+  For the full details of changes in this version, check out the
+  CHANGELOG.md file.

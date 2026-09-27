@@ -1,4 +1,3 @@
-import sublime
 import sublime_plugin
 
 from ..core import ContextHelper
@@ -27,14 +26,14 @@ class OverrideAuditToggleOverrideCommand(ContextHelper,sublime_plugin.TextComman
             target.run_command("override_audit_diff_override", args)
 
     def description(self, **kwargs):
-        return "OverrideAudit: Swap Diff/Edit of Current Override"
+        return self.caption("Swap Diff/Edit of Current Override", **kwargs)
 
     def is_visible(self, **kwargs):
         if self.always_visible(**kwargs):
             return True
 
         ctx = self.view_context(None, False, **kwargs)
-        return true if ctx.has_target() and ctx.has_diff() else False
+        return True if ctx.has_target() and ctx.has_diff() else False
 
     def is_enabled(self, **kwargs):
         ctx = self.view_context(None, False, **kwargs)

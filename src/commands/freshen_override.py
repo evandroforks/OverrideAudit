@@ -1,4 +1,3 @@
-import sublime
 import sublime_plugin
 
 from ..core import ContextHelper, freshen_override
@@ -18,12 +17,12 @@ class OverrideAuditFreshenOverrideCommand(ContextHelper,sublime_plugin.TextComma
         freshen_override(target, ctx.package, ctx.override)
 
     def description(self, **kwargs):
-        stub = "OverrideAudit: Freshen Override"
+        stub = "Freshen Override"
         ctx = self.view_context(None, True, **kwargs)
         if ctx.has_target():
-            return "%s '%s'" % (stub, ctx.override)
+            return self.caption("%s '%s'" % (stub, ctx.override), **kwargs)
         else:
-            return stub
+            return self.caption(stub, **kwargs)
 
     def is_visible(self, **kwargs):
         if self.always_visible(**kwargs):

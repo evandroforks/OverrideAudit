@@ -1,4 +1,5 @@
-import sublime
+from typing import Any, Dict
+
 import sublime_plugin
 
 from ..core import ContextHelper
@@ -22,19 +23,23 @@ class OverrideAuditRefreshReportCommand(ContextHelper,sublime_plugin.TextCommand
             ":overrides":         "override_audit_override_report",
             ":overrides_expired": "override_audit_override_report"
         }.get(report_type, "override_audit_diff_report")
-        args = {"force_reuse": True}
+        args: Dict[str, Any] = {"force_reuse": True}
+
+        if target_view.settings().get("override_audit_exclude_unchanged", False):
+            args["exclude_unchanged"] = True
 
         if report_type[0] != ":":
             args["package"] = report_type
         elif report_type == ":overrides_expired":
             args["only_expired"] = True
 
-        window.focus_view(target_view)
-        window.run_command(command, args)
+        if window:
+            window.focus_view(target_view)
+            window.run_command(command, args)
 
     def description(self, **kwargs):
         if self._report_type(**kwargs) is None:
-            return "OverrideAudit: Refresh Report"
+            return self.caption("Refresh Report", **kwargs)
 
         report = self._report_type(**kwargs)
         report = {
@@ -44,7 +49,7 @@ class OverrideAuditRefreshReportCommand(ContextHelper,sublime_plugin.TextCommand
             ":bulk_all":          "Bulk Diff Report"
         }.get(report, "Bulk Diff of '%s'" % report)
 
-        return "OverrideAudit: Refresh %s" % report
+        return self.caption("Refresh %s" % (report), **kwargs)
 
     def is_visible(self, **kwargs):
         if self.always_visible(**kwargs):

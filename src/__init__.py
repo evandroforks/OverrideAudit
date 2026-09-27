@@ -1,25 +1,25 @@
 from ..override_audit import reload
 
-reload("src", ["core", "events", "contexts", "settings_proxy"])
+reload("src", ["core", "events", "contexts", "browse", "pkg_popup", "settings_proxy"])
 reload("src.commands")
 
 from . import core
+from . import browse
 from .core import *
 from .events import *
 from .contexts import *
-from .settings_proxy import *
 from .commands import *
 
 __all__ = [
     # core
     "core",
 
-    # settings_proxy
-    "OverrideAuditOpenFileCommand",
-    "OverrideAuditEditSettingsCommand",
+    # browse
+    "browse",
 
     # events/contexts
     "OverrideAuditEventListener",
+    "CreateOverrideEventListener",
     "OverrideAuditContextListener",
 
     # commands/*
@@ -28,7 +28,11 @@ __all__ = [
     "OverrideAuditDiffReportCommand",
     "OverrideAuditRefreshReportCommand",
     "OverrideAuditToggleOverrideCommand",
+    "OverrideAuditCreateOverrideCommand",
+    "OverrideAuditContextCreateOverrideCommand",
     "OverrideAuditDiffOverrideCommand",
+    "OverrideAuditRevertOverrideCommand",
+    "OverrideAuditDiffExternallyCommand",
     "OverrideAuditEditOverrideCommand",
     "OverrideAuditDeleteOverrideCommand",
     "OverrideAuditFreshenOverrideCommand",

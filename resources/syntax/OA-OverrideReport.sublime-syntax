@@ -1,0 +1,36 @@
+%YAML 1.2
+---
+name: OverrideAudit
+scope: text.override-audit.overridereport
+version: 2
+hidden: true
+contexts:
+  main:
+    - match: '^(\[[SIU ]{3}]) '
+      captures:
+        1: meta.package.specifier storage.modifier
+      push: [package_row, 'scope:text.override-audit.diff#package_name']
+
+    - match: '^WARNING:'
+      scope: keyword.control.expired
+
+  package_row:
+    - match: '^\s*(`-) (\[X]) (.*)$'
+      captures:
+        1: punctuation.override.begin
+        2: meta.override.expired keyword.control.expired
+        3: entity.name.filename.override.expired
+
+    - match: '^\s*(`-) (\[\?]) (.*)$'
+      captures:
+        1: punctuation.override.begin
+        2: meta.override.unknown comment
+        3: entity.name.filename.override.unknown
+
+    - match: '^\s*(`-) (.*)$'
+      captures:
+        1: punctuation.override.begin
+        2: entity.name.filename.override
+
+    - match: ^$
+      pop: true

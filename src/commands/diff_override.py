@@ -1,4 +1,3 @@
-import sublime
 import sublime_plugin
 from os.path import isfile
 
@@ -40,27 +39,30 @@ class OverrideAuditDiffOverrideCommand(ContextHelper,sublime_plugin.TextCommand)
     def description(self, **kwargs):
         ctx = self.view_context(None, False, **kwargs)
         if ctx.source == "settings":
-            return "OverrideAudit: Diff this Override"
+            return self.caption("Diff this Override", **kwargs)
 
-        stub = "OverrideAudit: Diff Override"
+        stub = "Diff Override"
         if ctx.has_target():
-            return "%s '%s'" % (stub, ctx.override)
+            return self.caption("%s '%s'" % (stub, ctx.override), **kwargs)
         else:
-            return stub
+            return self.caption(stub, **kwargs)
 
     def is_visible(self, **kwargs):
         if self.always_visible(**kwargs):
             return True
 
-        ctx = self.view_context(None, False, **kwargs)
-        if ctx.has_target():
+        view = self.view_target(self.view, **kwargs)
+        ctx = self.view_context(view, False, **kwargs)
+
+        if ctx.has_target() and not self.override_unknown(view, ctx):
             return not ctx.is_diff if ctx.has_diff() else True
 
         return False
 
     def is_enabled(self, **kwargs):
-        ctx = self.view_context(None, False, **kwargs)
-        if self.override_exists(ctx):
+        view = self.view_target(self.view, **kwargs)
+        ctx = self.view_context(view, False, **kwargs)
+        if not self.override_unknown(view, ctx) and self.override_exists(ctx):
             return not ctx.is_diff if ctx.has_diff() else True
 
         return False

@@ -1,0 +1,99 @@
+[
+    {
+        "caption": "OverrideAudit: View Documentation",
+        "command": "open_url",
+        "args": {
+            "url": "https://overrideaudit.odatnurd.net/"
+        }
+    },
+    {
+        "caption": "Preferences: OverrideAudit Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/OverrideAudit/resources/settings/OverrideAudit.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    },
+    {
+        "caption": "Preferences: OverrideAudit Key Bindings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/OverrideAudit/resources/keymaps/Default ($platform).sublime-keymap",
+            "default": "[\n\t$0\n]\n"
+        }
+    },
+    {
+        "caption": "OverrideAudit: Package Report",
+        "command": "override_audit_package_report"
+    },
+    {
+        "caption": "OverrideAudit: Override Report",
+        "command": "override_audit_override_report"
+    },
+    {
+        "caption": "OverrideAudit: Override Report (Exclude unchanged)",
+        "command": "override_audit_override_report",
+        "args": {
+            "exclude_unchanged": true
+        },
+    },
+
+    {
+        "caption": "OverrideAudit: Override Report (Only expired)",
+        "command": "override_audit_override_report",
+        "args": {"only_expired": true}
+    },
+    {
+        "caption": "OverrideAudit: Diff Single Override",
+        "command": "override_audit_diff_single"
+    },
+    {
+        "caption": "OverrideAudit: Bulk Diff Single Package",
+        "command": "override_audit_diff_single",
+        "args": { "bulk": true }
+    },
+    {
+        "caption": "OverrideAudit: Bulk Diff All Packages",
+        "command": "override_audit_diff_report"
+    },
+    {
+        "caption": "OverrideAudit: Bulk Diff All Packages (Excluding unchanged)",
+        "command": "override_audit_diff_report",
+        "args": {"exclude_unchanged": true }
+    },
+    {
+        "caption": "OverrideAudit: Refresh Report",
+        "command": "override_audit_refresh_report"
+    },
+    {
+        "caption": "OverrideAudit: Swap Diff/Edit View",
+        "command": "override_audit_toggle_override",
+    },
+    {
+        "caption": "OverrideAudit: Create Override",
+        "command": "override_audit_create_override"
+    },
+    {
+        "caption": "OverrideAudit: Open Resource",
+        "command": "override_audit_create_override",
+        "args": {"include_existing": true}
+    },
+    {
+        "caption": "OverrideAudit: Override Current Resource",
+        "command": "override_audit_context_create_override"
+    },
+    {
+        "caption": "OverrideAudit: Revert Current Override",
+        "command": "override_audit_revert_override"
+    },
+    {
+        "caption": "OverrideAudit: Open Diff Externally",
+        "command": "override_audit_diff_externally",
+        "args": { "action": "open_external" }
+    },
+    {
+        "caption": "OverrideAudit: Delete Current Override",
+        "command": "override_audit_delete_override",
+        "args": { "action": "delete" }
+    }
+]

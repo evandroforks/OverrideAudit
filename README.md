@@ -1,14 +1,19 @@
 OverrideAudit
 =============
 
-OverrideAudit is a package for Sublime Text 3 that helps you detect and work
+OverrideAudit is a package for Sublime Text that helps you detect and work
 with your package overrides, allowing you to easily see a list of files that
 you are overriding, see what changes your override provides, and most
 importantly to  provide warnings to you when the file you are overriding has
 been changed by its author so you can determine what course of action to take.
 
-If you're new to OverrideAudit, there is an [introductory video](https://www.youtube.com/watch?v=qYeli46frR8)
-available which shows some of the key features.
+If you're new to OverrideAudit, there is an [introductory video](https://youtu.be/qYeli46frR8)
+available which shows some of the key features. See also the
+[new features](https://youtu.be/NEX9IxLHr_0) added in version 2.1, which are
+not covered in the intro video.
+
+The [upstream documentation](https://overrideaudit.odatnurd.net/) describes the
+current package features. The installation steps below describe this fork.
 
 -------------------------------------------------------------------------------
 
@@ -474,7 +479,7 @@ settings if you want to consider a different set of files binary for the
 purposes of diffs.
 
 
-### `report_on_unignore`: Boolean (Default: true) ###
+### `report_on_unignore`: Boolean (Default: false) ###
 
 OverrideAudit can
 [automatically generate a report](#automatic-reports-of-expired-overrides) to
@@ -607,7 +612,7 @@ address the situation.
 
 ## License ##
 
-Copyright 2017 Terence Martin
+Copyright 2017-2025 Terence Martin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
