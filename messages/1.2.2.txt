@@ -11,4 +11,3 @@ Version 1.2.2 (2019-03-13)
 
     * May require tweaks to any customized key bindings you may
       have made using OverrideAudit commands.
-

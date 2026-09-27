@@ -77,7 +77,7 @@
     // detect if recent package changes might have caused an override to expire.
     //
     // The report will only be displayed if any expired overrides are found.
-    "report_on_unignore": true,
+    "report_on_unignore": false,
 
     // The tool to use for opening an override diff externally.
     //

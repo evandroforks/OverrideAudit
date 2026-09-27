@@ -43,7 +43,7 @@ def loaded():
     """
     Initialize plugin state.
     """
-    log("Initializing")
+    # log("Initializing")
     oa_setting.obj = sublime.load_settings("OverrideAudit.sublime-settings")
     oa_setting.default = {
         "reuse_views": True,
@@ -56,7 +56,7 @@ def loaded():
         "confirm_deletion": True,
         "confirm_freshen": True,
         "confirm_revert": True,
-        "report_on_unignore": True,
+        "report_on_unignore": False,
         "external_diff": False,
         "ignore_unknown_overrides": [
             "^\\.git/",
@@ -585,7 +585,7 @@ class AutoReportTrigger():
                     pass
 
         if self.last_build == sublime.version() and self.force_report == False:
-            log("Sublime version is unchanged; skipping automatic report")
+            # log("Sublime version is unchanged; skipping automatic report")
             return
 
         reason = "no reason"
